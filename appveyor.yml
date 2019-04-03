@@ -1,10 +1,13 @@
 version: '{build}'
+branches:
+  only:
+  - master
 image: Visual Studio 2017
 environment:
   PFX_PASSWORD:
-    secure: X3wxyOt1frnJOFA1Nh6UjYeCY994vrcCcm05QFCm53v7TjilPngLdwN7MZGMFCRi
+    secure: TOUK93S0KJBaB7vjTJ/Wxcy3bTw55VNfk05kiz37cyLbGlgrL2F6vYt9b+9ofz2j
   DIVVUN_KEY:
-    secure: O2YLaJAmMg+GH5u54RvYfT9L084K3wH+jVhXAd9JpIPKBBLTzNEkriidokOtCuFcqz+U79nExQefKS1WBTN6PeR2BaO93A2MpmwEWcpT0wxHXgVYijpjjB+iv+ULj0Sj
+    secure: ackb0siNZbJLyOe1YR/lkfr0d4T98RpWjh45wdk/Nn0IEkAh0SgmnfnxEBDKZZwcwH0hNo8SvHOpV+WEc4GWglcq7CXLUTbiwP9cYD9phL6547vzTeZ17HCVQiq0QtO1
   DEPLOY_VERSION_VOIKKO: 5.0.1
   DEPLOY_VERSION_SPELLER_SE: 1.0.1
   DEPLOY_VERSION_SPELLER_SMA: 1.0.1
@@ -15,7 +18,7 @@ environment:
   DEPLOY_SVN_URL: https://pahkat.uit.no/repo/windows-staging
   DEPLOY_SVN_USER: divvunci
   DEPLOY_SVN_PASSWORD:
-    secure: KdYS8gad7O7sTZ56SOJqM/b/DSdM9g6UspdHDRxFse/BbjK9JhkwV25GtLTSZpTrTgogChkwasRPQpH9dELhIIymPCZ6/oYvLTsc0KARNUR2Of7hz4Z9SVuiKwIUd3aN
+    secure: +kBSsT/UuXPXDadjRA5hl3dIynEVqmdkvG0THk0Wk6Pfa2PBfbRzNOrtvx7HdVH3bWcueAl8WWiLwP6JapNYwKqBh3Dlye721AZ8GriB+UPfdP/5qSGy7Xg+W3ccMaX8
 install:
 - cmd: >-
     choco install svn
@@ -30,6 +33,7 @@ build_script:
     cd $Env:APPVEYOR_BUILD_FOLDER\win
 
     .\build.ps1
+test: off
 deploy_script:
 - ps: >-
     $Env:BRANCH=$Env:APPVEYOR_REPO_BRANCH
