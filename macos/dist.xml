@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<installer-gui-script minSpecVersion="2">
+  <title>Voikko extension for LibreOffice</title>
+  <options customize="never" rootVolumeOnly="true" />
+  <choices-outline>
+    <line choice="default">
+      <line choice="no.divvun.voikko.LibreOffice"/>
+    </line>
+  </choices-outline>
+  <choice id="default"/>
+  <choice id="no.divvun.voikko.LibreOffice" visible="false">
+    <pkg-ref id="no.divvun.voikko.LibreOffice"/>
+  </choice>
+  <pkg-ref auth="root" id="no.divvun.voikko.LibreOffice" version="0">libreoffice-installer-voikko.pkg</pkg-ref>
+</installer-gui-script>

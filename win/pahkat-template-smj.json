@@ -1,0 +1,36 @@
+{
+  "@context": "https://pahkat.org/",
+  "@type": "Package",
+  "id": "libreoffice-speller-smj",
+  "name": {
+      "en": "Lule Sami speller for LibreOffice"
+  },
+  "description": {
+      "en": ""
+  },
+  "version": "DEPLOY_VERSION",
+  "category": "spellers",
+  "languages": [
+      "smj"
+  ],
+  "platform": {
+      "windows": "*"
+  },
+  "dependencies": {
+      "libreoffice-voikko": "*"
+  },
+  "virtualDependencies": {},
+  "installer": {
+      "@type": "WindowsInstaller",
+      "url": "DEPLOY_SVN_URL/artifacts/DEPLOY_FILE_NAME",
+      "type": "inno",
+      "args": null,
+      "uninstallArgs": null,
+      "productCode": "{334B5F82-B8A9-4973-B9DB-EE079E4A3E52}_is1",
+      "requiresReboot": false,
+      "requiresUninstallReboot": false,
+      "size": DEPLOY_FILE_SIZE,
+      "installedSize": 3500000,
+      "signature": null
+  }
+}

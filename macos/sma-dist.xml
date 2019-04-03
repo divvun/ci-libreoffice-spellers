@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<installer-gui-script minSpecVersion="2">
+  <title>Southern Sami speller for LibreOffice</title>
+  <options customize="never" rootVolumeOnly="true" />
+  <choices-outline>
+    <line choice="default">
+      <line choice="no.uit.spellers.libreoffice.sma"/>
+    </line>
+  </choices-outline>
+  <choice id="default"/>
+  <choice id="no.uit.spellers.libreoffice.sma" visible="false">
+    <pkg-ref id="no.uit.spellers.libreoffice.sma"/>
+  </choice>
+  <pkg-ref auth="root" id="no.uit.spellers.libreoffice.sma" version="0">libreoffice-speller-sma.pkg</pkg-ref>
+</installer-gui-script>

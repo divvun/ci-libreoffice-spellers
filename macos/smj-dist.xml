@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<installer-gui-script minSpecVersion="2">
+  <title>Lule Sami speller for LibreOffice</title>
+  <options customize="never" rootVolumeOnly="true" />
+  <choices-outline>
+    <line choice="default">
+      <line choice="no.uit.spellers.libreoffice.smj"/>
+    </line>
+  </choices-outline>
+  <choice id="default"/>
+  <choice id="no.uit.spellers.libreoffice.smj" visible="false">
+    <pkg-ref id="no.uit.spellers.libreoffice.smj"/>
+  </choice>
+  <pkg-ref auth="root" id="no.uit.spellers.libreoffice.smj" version="0">libreoffice-speller-smj.pkg</pkg-ref>
+</installer-gui-script>

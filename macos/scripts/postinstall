@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+echo "Running postinstall" > /tmp/voikko_lo_postinstall.log
+#INSTALLER_USER=$(stat -f '%Su' $HOME)
+#echo $INSTALLER_USER > /tmp/voikko_lo_postinstall.log
+ls /Applications/LibreOffice.app/Contents/MacOS/unopkg >> /tmp/voikko_lo_postinstall.log
+ls /etc/voikko/voikko-5.0.oxt >> /tmp/voikko_lo_postinstall.log
+#sudo -u $INSTALLER_USER /Applications/LibreOffice.app/Contents/MacOS/unopkg add --shared -f -v /etc/voikko/voikko-5.0.oxt >> /tmp/voikko_lo_postinstall.log
+/Applications/LibreOffice.app/Contents/MacOS/unopkg add --shared -f -v /etc/voikko/voikko-5.0.oxt >> /tmp/voikko_lo_postinstall.log
+exit 0

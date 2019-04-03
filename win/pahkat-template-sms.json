@@ -1,0 +1,36 @@
+{
+  "@context": "https://pahkat.org/",
+  "@type": "Package",
+  "id": "libreoffice-speller-sms",
+  "name": {
+      "en": "Skolt Sami speller for LibreOffice"
+  },
+  "description": {
+      "en": ""
+  },
+  "version": "DEPLOY_VERSION",
+  "category": "spellers",
+  "languages": [
+      "sms"
+  ],
+  "platform": {
+      "windows": "*"
+  },
+  "dependencies": {
+      "libreoffice-voikko": "*"
+  },
+  "virtualDependencies": {},
+  "installer": {
+      "@type": "WindowsInstaller",
+      "url": "DEPLOY_SVN_URL/artifacts/DEPLOY_FILE_NAME",
+      "type": "inno",
+      "args": null,
+      "uninstallArgs": null,
+      "productCode": "{4775A247-473D-4389-B8BA-B3F71347BF39}_is1",
+      "requiresReboot": false,
+      "requiresUninstallReboot": false,
+      "size": DEPLOY_FILE_SIZE,
+      "installedSize": 2000000,
+      "signature": null
+  }
+}

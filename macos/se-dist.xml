@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<installer-gui-script minSpecVersion="2">
+  <title>Northern Sami speller for LibreOffice</title>
+  <options customize="never" rootVolumeOnly="true" />
+  <choices-outline>
+    <line choice="default">
+      <line choice="no.uit.spellers.libreoffice.se"/>
+    </line>
+  </choices-outline>
+  <choice id="default"/>
+  <choice id="no.uit.spellers.libreoffice.se" visible="false">
+    <pkg-ref id="no.uit.spellers.libreoffice.se"/>
+  </choice>
+  <pkg-ref auth="root" id="no.uit.spellers.libreoffice.se" version="0">libreoffice-speller-se.pkg</pkg-ref>
+</installer-gui-script>
