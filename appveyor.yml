@@ -1,0 +1,39 @@
+version: '{build}'
+image: Visual Studio 2017
+environment:
+  PFX_PASSWORD:
+    secure: X3wxyOt1frnJOFA1Nh6UjYeCY994vrcCcm05QFCm53v7TjilPngLdwN7MZGMFCRi
+  DIVVUN_KEY:
+    secure: O2YLaJAmMg+GH5u54RvYfT9L084K3wH+jVhXAd9JpIPKBBLTzNEkriidokOtCuFcqz+U79nExQefKS1WBTN6PeR2BaO93A2MpmwEWcpT0wxHXgVYijpjjB+iv+ULj0Sj
+  DEPLOY_VERSION_VOIKKO: 5.0.1
+  DEPLOY_VERSION_SPELLER_SE: 1.0.1
+  DEPLOY_VERSION_SPELLER_SMA: 1.0.1
+  DEPLOY_VERSION_SPELLER_SMJ: 1.0.1
+  DEPLOY_VERSION_SPELLER_SMN: 1.0.1
+  DEPLOY_VERSION_SPELLER_SMS: 1.0.1
+  PAHKAT_REPO_NAME: windows-staging
+  DEPLOY_SVN_URL: https://pahkat.uit.no/repo/windows-staging
+  DEPLOY_SVN_USER: divvunci
+  DEPLOY_SVN_PASSWORD:
+    secure: KdYS8gad7O7sTZ56SOJqM/b/DSdM9g6UspdHDRxFse/BbjK9JhkwV25GtLTSZpTrTgogChkwasRPQpH9dELhIIymPCZ6/oYvLTsc0KARNUR2Of7hz4Z9SVuiKwIUd3aN
+install:
+- cmd: >-
+    choco install svn
+
+    choco install innosetup
+
+    appveyor DownloadFile https://github.com/divvun/pahkat/releases/download/0.6.0/pahkat.exe
+
+    move pahkat.exe C:\Windows\system32
+build_script:
+- ps: >-
+    cd $Env:APPVEYOR_BUILD_FOLDER\win
+
+    .\build.ps1
+deploy_script:
+- ps: >-
+    $Env:BRANCH=$Env:APPVEYOR_REPO_BRANCH
+
+    cd $Env:APPVEYOR_BUILD_FOLDER\win
+
+    .\deploy.ps1
