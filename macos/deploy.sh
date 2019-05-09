@@ -30,10 +30,10 @@ if [ -z "$DEPLOY_SVN_PASSWORD" ]; then
     exit 1
 fi
 
+PAHKAT_PACKAGE_NAME="libreoffice-voikko"
 DEPLOY_AS="$PAHKAT_PACKAGE_NAME-$(date -u +%FT%TZ).pkg"
 DEPLOY_ARTIFACT_PATH=../libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.pkg
 INTERMEDIATE_REPO=./build/deploy-repo
-PAHKAT_PACKAGE_NAME="libreoffice-voikko"
 
 rm -rf INTERMEDIATE_REPO || true
 
