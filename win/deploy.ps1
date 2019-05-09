@@ -53,7 +53,7 @@ function SvnAddOrUpdate {
         $Template
     )
 
-    $deployAs = "$Package-$Env:BRANCH-$Version-$((Get-Date).ToString('yyyyMMdd')).exe"
+    $deployAs = "$Package-$((Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')).exe"
 
     # make sure artifact exists
     if (-not (Test-Path $Artifact)) { throw }
