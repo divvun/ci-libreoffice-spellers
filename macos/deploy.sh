@@ -31,7 +31,7 @@ if [ -z "$DEPLOY_SVN_PASSWORD" ]; then
 fi
 
 PAHKAT_PACKAGE_NAME="libreoffice-voikko"
-DEPLOY_AS="$PAHKAT_PACKAGE_NAME-$(date -u +%FT%TZ).pkg"
+DEPLOY_AS="$PAHKAT_PACKAGE_NAME-$(date -u +%Y%m%dT%H%M%SZ).pkg"
 DEPLOY_ARTIFACT_PATH=../libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.pkg
 INTERMEDIATE_REPO=./build/deploy-repo
 
@@ -71,7 +71,7 @@ cat ../../pahkat-template.json | sed "s|DEPLOY_VERSION|$DEPLOY_VERSION_VOIKKO|g"
 
 for speller in se sma smj smn sms; do
     PAHKAT_PACKAGE_NAME=libreoffice-speller-$speller
-    DEPLOY_AS="$PAHKAT_PACKAGE_NAME-$(date -u +%FT%TZ).pkg"
+    DEPLOY_AS="$PAHKAT_PACKAGE_NAME-$(date -u +%Y%m%dT%H%M%SZ).pkg"
     DEPLOY_ARTIFACT_PATH=../libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.pkg
 
     if [ ! -f $DEPLOY_ARTIFACT_PATH ]; then
