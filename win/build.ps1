@@ -19,7 +19,7 @@ Try
 
     git clone -q https://github.com/divvun/divvun-ci-config
     if ($LastExitCode -ne 0) { throw }
-    openssl aes-256-cbc -d -in .\divvun-ci-config\config.txz.enc -pass pass:$Env:DIVVUN_KEY -out config.txz
+    openssl aes-256-cbc -d -in .\divvun-ci-config\config.txz.enc -pass pass:$Env:DIVVUN_KEY -out config.txz -md md5
     if ($LastExitCode -ne 0) { throw }
     7z e config.txz
     if ($LastExitCode -ne 0) { throw }
