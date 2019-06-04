@@ -19,7 +19,7 @@ jobs:
       PFX_PASSWORD: $(pfxPassword)
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/wind/output/libreoffice-voikko.exe'
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/win/output/libreoffice-voikko.exe'
       artifactName: windows
   - powershell: |
       . .\win\build\divvun-ci-config\repo\scripts\PahkatDeploySvn.ps1
