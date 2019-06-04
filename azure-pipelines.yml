@@ -11,6 +11,7 @@ jobs:
       curl -sLo pahkat.exe https://github.com/divvun/pahkat/releases/download/0.6.0/pahkat.exe
     displayName: 'Install prerequisites'
   - powershell: |
+      . .\divvun-ci-config\repo\scripts\BundleLibreOffice.ps1
       cd win
       .\build.ps1
     displayName: 'Build'
