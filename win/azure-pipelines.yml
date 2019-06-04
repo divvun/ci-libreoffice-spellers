@@ -1,0 +1,34 @@
+trigger:
+- master
+
+jobs:
+- job: 'Windows'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - bash: |
+      set -e
+      curl -sLo pahkat.exe https://github.com/divvun/pahkat/releases/download/0.6.0/pahkat.exe
+    displayName: 'Install prerequisites'
+  - powershell: |
+      cd win
+      .\build.ps1
+    displayName: 'Build'
+    env:
+      DIVVUN_KEY: $(divvunKey)
+      PFX_PASSWORD: $(pfxPassword)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/build/output/libreoffice-voikko.exe'
+      artifactName: windows
+  - powershell: |
+      . .\divvun-ci-config\repo\scripts\PahkatDeploySvn.ps1
+      $Env:PATH += ";$(System.DefaultWorkingDirectory)"
+      # todo
+      $version = "5.0.0"
+      PahkatDeploySvn -SvnUrl https://pahkat.uit.no/repo/windows -Artifact "$(System.DefaultWorkingDirectory)\build\output\libreoffice-voikko.exe" -Package windivvun -Version $version
+    displayName: 'Deploy to nightly channel'
+    env:
+      DEPLOY_SVN_USER: $(svnUser)
+      DEPLOY_SVN_PASSWORD: $(svnPassword)
+      DEPLOY_SVN_COMMIT: $(svnCommit)
