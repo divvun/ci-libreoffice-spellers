@@ -25,6 +25,7 @@ Try
     if ($LastExitCode -ne 0) { throw }
     tar xf config.tar
     if ($LastExitCode -ne 0) { throw }
+    . .\divvun-ci-config\repo\scripts\BundleLibreOffice.ps1
     New-Item -Path voikko -ItemType directory
     Set-Location voikko
     svn checkout https://gtsvn.uit.no/langtech/trunk/giella-libs/LibreOffice-voikko/5.0
