@@ -19,14 +19,13 @@ jobs:
       PFX_PASSWORD: $(pfxPassword)
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/build/output/libreoffice-voikko.exe'
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/wind/output/libreoffice-voikko.exe'
       artifactName: windows
   - powershell: |
-      . .\divvun-ci-config\repo\scripts\PahkatDeploySvn.ps1
+      . .\win\build\divvun-ci-config\repo\scripts\PahkatDeploySvn.ps1
       $Env:PATH += ";$(System.DefaultWorkingDirectory)"
-      # todo
       $version = "5.0.0"
-      PahkatDeploySvn -SvnUrl https://pahkat.uit.no/repo/windows -Artifact "$(System.DefaultWorkingDirectory)\build\output\libreoffice-voikko.exe" -Package windivvun -Version $version
+      PahkatDeploySvn -SvnUrl https://pahkat.uit.no/repo/windows -Artifact "$(System.DefaultWorkingDirectory)\win\output\libreoffice-voikko.exe" -Package libreoffice-voikko -Version $version
     displayName: 'Deploy to nightly channel'
     env:
       DEPLOY_SVN_USER: $(svnUser)
