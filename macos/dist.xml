@@ -11,5 +11,5 @@
   <choice id="no.divvun.voikko.LibreOffice" visible="false">
     <pkg-ref id="no.divvun.voikko.LibreOffice"/>
   </choice>
-  <pkg-ref auth="root" id="no.divvun.voikko.LibreOffice" version="0">libreoffice-installer-voikko.pkg</pkg-ref>
+  <pkg-ref auth="root" id="no.divvun.voikko.LibreOffice" version="0">libreoffice-voikko.pkg</pkg-ref>
 </installer-gui-script>

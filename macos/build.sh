@@ -1,14 +1,7 @@
 #!/bin/sh
 set -e
 
-if [ -z "$DEPLOY_VERSION_VOIKKO" ]; then
-    echo "DEPLOY_VERSION_VOIKKO variable not set"
-    exit 1
-fi
-if [ -z "$DEPLOY_VERSION_SPELLERS" ]; then
-    echo "DEPLOY_VERSION_SPELLERS variable not set"
-    exit 1
-fi
+. version.sh
 
 rm -rf build || true
 mkdir build
@@ -28,50 +21,23 @@ cd ../../..
 
 pkgbuild --root build/pkg-root \
     --ownership recommended \
-    --version $DEPLOY_VERSION_VOIKKO \
+    --version $DEPLOY_VERSION \
     --identifier no.uit.spellers.libreoffice.voikko \
     --scripts scripts \
-    build/libreoffice-installer-voikko.pkg
+    build/libreoffice-voikko.pkg
 
 productbuild --distribution dist.xml \
-    --version $DEPLOY_VERSION_VOIKKO \
+    --version $DEPLOY_VERSION \
     --package-path build/ \
-    build/libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.unsigned.pkg
+    build/libreoffice-voikko-$DEPLOY_VERSION.unsigned.pkg
 
 productsign \
     --sign "Developer ID Installer: The University of Tromso (2K5J2584NX)" \
-    build/libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.unsigned.pkg \
-    build/libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.pkg
+    build/libreoffice-voikko-$DEPLOY_VERSION.unsigned.pkg \
+    build/libreoffice-voikko-$DEPLOY_VERSION.pkg
 
-rm build/libreoffice-installer-voikko.pkg
-rm build/libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.unsigned.pkg    
-pkgutil --check-signature build/libreoffice-installer-voikko-$DEPLOY_VERSION_VOIKKO.pkg
+rm build/libreoffice-voikko.pkg
+rm build/libreoffice-voikko-$DEPLOY_VERSION.unsigned.pkg    
+pkgutil --check-signature build/libreoffice-voikko-$DEPLOY_VERSION.pkg
 
-cp -a scripts build/
-cd build
-sh ../download_spellers.sh
-
-for speller in se sma smj smn sms; do
-    mkdir -p $speller/etc/voikko/3
-    mv $speller.zhfst $speller/etc/voikko/3
-
-    pkgbuild --root $speller \
-        --ownership recommended \
-        --version $DEPLOY_VERSION_SPELLERS \
-        --identifier no.uit.spellers.libreoffice.$speller \
-        libreoffice-speller-$speller.pkg
-
-    productbuild --distribution ../$speller-dist.xml \
-        --version $DEPLOY_VERSION_SPELLERS \
-        --package-path build \
-        libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.unsigned.pkg
-
-    productsign \
-        --sign "Developer ID Installer: The University of Tromso (2K5J2584NX)" \
-        libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.unsigned.pkg \
-        libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.pkg
-
-    rm libreoffice-speller-$speller.pkg
-    rm libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.unsigned.pkg
-    pkgutil --check-signature libreoffice-speller-$speller-$DEPLOY_VERSION_SPELLERS.pkg
-done
+mv build/libreoffice-voikko-$DEPLOY_VERSION.pkg build/libreoffice-voikko.pkg

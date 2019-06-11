@@ -31,3 +31,34 @@ jobs:
       DEPLOY_SVN_USER: $(svnUser)
       DEPLOY_SVN_PASSWORD: $(svnPassword)
       DEPLOY_SVN_COMMIT: $(svnCommit)
+- job: 'macOS'
+  pool:
+    vmImage: 'macOS-10.14'
+  steps:
+  - script: |
+      set -e
+      wget https://github.com/divvun/pahkat/releases/download/0.6.0/pahkat-macos -O pahkat
+      chmod +x pahkat
+    displayName: 'Install prerequisites'
+  - script: |
+      set -e
+      cd macos
+      sh build.sh
+    displayName: 'Build'
+    env:
+      DIVVUN_KEY: $(divvunKey)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/macos/build/libreoffice-voikko.pkg'
+      artifactName: macos
+  - script: |
+      set -e
+      export PATH="$PATH:$(System.DefaultWorkingDirectory)"
+      cd macos
+      . version.sh
+      sh build/divvun-ci-config/repo/scripts/pahkat_deploy_svn.sh https://pahkat.uit.no/repo/macos "$(System.DefaultWorkingDirectory)/macos/build/libreoffice-voikko.pkg" libreoffice-voikko $DEPLOY_VERSION
+    displayName: 'Deploy to nightly channel'
+    env:
+      DEPLOY_SVN_USER: $(svnUser)
+      DEPLOY_SVN_PASSWORD: $(svnPassword)
+      DEPLOY_SVN_COMMIT: $(svnCommit)
