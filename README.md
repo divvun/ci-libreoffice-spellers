@@ -27,16 +27,16 @@ build.ps1
 The easiest way is to install the XCode developer tools installed.
 
 ### Requirements
-* `pkgutil`
-* `pkgbuild`
-* `productbuild`
-* `productsign`
+* pkgutil
+* pkgbuild
+* productbuild
+* productsign
 
 ```sh
 # build by setting the following environment variables
 # to their respective values and then run the build 
 # script in the macos folder
-export DIVVUN_KEY = ".."
+export DIVVUN_KEY=".."
 cd macos
 sh build.sh
 ```
