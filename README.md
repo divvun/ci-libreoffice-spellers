@@ -24,7 +24,7 @@ build.ps1
 ```
 
 ## macOS
-The easiest way is to install the XCode developer tools installed.
+The easiest way is to install the XCode developer tools.
 
 ### Requirements
 * pkgutil
